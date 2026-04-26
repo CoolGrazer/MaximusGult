@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="SingleInput" format=3 uid="uid://bqpj3gxiu4qxj"]
+
+[ext_resource type="Script" uid="uid://bmuho26c6lp8a" path="res://Scripts/Resources/BaseResourcesForAttacks/SingleInput.gd" id="1_rd007"]
+
+[resource]
+script = ExtResource("1_rd007")

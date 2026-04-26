@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="GenericInputCommand" format=3 uid="uid://c13hvnlqjw8db"]
+
+[ext_resource type="Script" uid="uid://hki0ag63m2yk" path="res://Scripts/Resources/BaseResourcesForAttacks/GenericInputType.gd" id="1_sd323"]
+
+[resource]
+script = ExtResource("1_sd323")

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://ovmcdif8br1l"]
+
+[ext_resource type="Script" uid="uid://c10ebkc21t21n" path="res://Scenes/Input/InputInterpreter.gd" id="1_hhl76"]
+[ext_resource type="Script" uid="uid://hki0ag63m2yk" path="res://Scripts/Resources/BaseResourcesForAttacks/GenericInputType.gd" id="2_85akh"]
+[ext_resource type="PackedScene" uid="uid://dd1wdni83k15a" path="res://Scenes/Input/InputGrabber.tscn" id="2_k52n5"]
+[ext_resource type="Script" uid="uid://c44q7rg1ypecb" path="res://Scripts/Resources/BaseResourcesForAttacks/InputString.gd" id="3_yqwp4"]
+[ext_resource type="Script" uid="uid://bmuho26c6lp8a" path="res://Scripts/Resources/BaseResourcesForAttacks/SingleInput.gd" id="4_w0moa"]
+[ext_resource type="Script" uid="uid://vdfrl263oi6s" path="res://Scripts/Resources/AttackTemplates/Specials.gd" id="5_iah7c"]
+
+[sub_resource type="Resource" id="Resource_yifyy"]
+script = ExtResource("4_w0moa")
+stick_dir = "DOWN"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_342yh"]
+script = ExtResource("4_w0moa")
+stick_dir = "DOWNRIGHT"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_7n08e"]
+script = ExtResource("4_w0moa")
+stick_dir = "RIGHT"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_swsd5"]
+script = ExtResource("3_yqwp4")
+string = Array[ExtResource("4_w0moa")]([SubResource("Resource_yifyy"), SubResource("Resource_342yh"), SubResource("Resource_7n08e")])
+metadata/_custom_type_script = "uid://c44q7rg1ypecb"
+
+[sub_resource type="Resource" id="Resource_yj6le"]
+script = ExtResource("5_iah7c")
+priority_type = "Specials"
+move_name = "Haiken"
+input_string = SubResource("Resource_swsd5")
+priority = "Medium Priority"
+metadata/_custom_type_script = "uid://vdfrl263oi6s"
+
+[node name="InputInterpreter" type="Node" unique_id=1470210156]
+script = ExtResource("1_hhl76")
+input_buffer_length = 15
+moves_to_check = Array[ExtResource("2_85akh")]([SubResource("Resource_yj6le")])
+
+[node name="InputGrabber" parent="." unique_id=292484112 instance=ExtResource("2_k52n5")]

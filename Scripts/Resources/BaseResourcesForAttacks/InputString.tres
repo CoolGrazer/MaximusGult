@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="InputString" format=3 uid="uid://s5cin8qsw834"]
+
+[ext_resource type="Script" uid="uid://c44q7rg1ypecb" path="res://Scripts/Resources/BaseResourcesForAttacks/InputString.gd" id="1_562nx"]
+[ext_resource type="Script" uid="uid://bmuho26c6lp8a" path="res://Scripts/Resources/BaseResourcesForAttacks/SingleInput.gd" id="2_c0bao"]
+
+[resource]
+script = ExtResource("1_562nx")

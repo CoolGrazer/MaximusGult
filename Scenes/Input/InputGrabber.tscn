@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dd1wdni83k15a"]
+
+[ext_resource type="Script" uid="uid://j2rv6rpoyhd1" path="res://Scenes/Input/InputGrabber.gd" id="1_3rqnk"]
+
+[node name="InputGrabber" type="Node" unique_id=292484112]
+script = ExtResource("1_3rqnk")
+player_type = "Player1"

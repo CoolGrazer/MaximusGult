@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="SpecialMove" format=3 uid="uid://cai4gbodr0w07"]
+
+[ext_resource type="Script" uid="uid://vdfrl263oi6s" path="res://Scripts/Resources/AttackTemplates/Specials.gd" id="1_ppc0p"]
+
+[resource]
+script = ExtResource("1_ppc0p")

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c4l6x2ix5ng4p"]
+
+[ext_resource type="Script" uid="uid://dio38fmykynhy" path="res://Scripts/Debug/SingleInputDisplay.gd" id="1_eb6ai"]
+[ext_resource type="Script" uid="uid://bmuho26c6lp8a" path="res://Scripts/Resources/BaseResourcesForAttacks/SingleInput.gd" id="2_eb6ai"]
+
+[sub_resource type="Resource" id="Resource_axcpe"]
+script = ExtResource("2_eb6ai")
+stick_dir = "UPLEFT"
+button_press = "A"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[node name="SingleInputDisplay" type="Control" unique_id=501513821]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eb6ai")
+single_input = SubResource("Resource_axcpe")
+
+[node name="UsedFor" type="Label" parent="." unique_id=1650718348]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CrossOut" type="TextureRect" parent="." unique_id=724481270]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InputsToDisplay" type="HBoxContainer" parent="." unique_id=1848098994]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 10.0

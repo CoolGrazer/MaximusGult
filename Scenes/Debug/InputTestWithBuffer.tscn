@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bgkw8dfg8wmyq"]
+
+[ext_resource type="PackedScene" uid="uid://c1l5fbdo2nwj6" path="res://Scenes/Debug/InputBufferVisualizer.tscn" id="1_o5ypv"]
+[ext_resource type="PackedScene" uid="uid://ovmcdif8br1l" path="res://Scenes/Input/InputInterpreter.tscn" id="2_2nqhw"]
+[ext_resource type="Script" uid="uid://hki0ag63m2yk" path="res://Scripts/Resources/BaseResourcesForAttacks/GenericInputType.gd" id="3_qqsy3"]
+[ext_resource type="Script" uid="uid://c44q7rg1ypecb" path="res://Scripts/Resources/BaseResourcesForAttacks/InputString.gd" id="4_l7wik"]
+[ext_resource type="Script" uid="uid://bmuho26c6lp8a" path="res://Scripts/Resources/BaseResourcesForAttacks/SingleInput.gd" id="5_antcy"]
+[ext_resource type="Script" uid="uid://vdfrl263oi6s" path="res://Scripts/Resources/AttackTemplates/Specials.gd" id="6_3lqrm"]
+
+[sub_resource type="Resource" id="Resource_yifyy"]
+script = ExtResource("5_antcy")
+stick_dir = "DOWN"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_342yh"]
+script = ExtResource("5_antcy")
+stick_dir = "DOWNRIGHT"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_snh0f"]
+script = ExtResource("5_antcy")
+stick_dir = "RIGHT"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_hxu0d"]
+script = ExtResource("4_l7wik")
+string = Array[ExtResource("5_antcy")]([SubResource("Resource_yifyy"), SubResource("Resource_342yh"), SubResource("Resource_snh0f")])
+metadata/_custom_type_script = "uid://c44q7rg1ypecb"
+
+[sub_resource type="Resource" id="Resource_svetx"]
+script = ExtResource("6_3lqrm")
+priority_type = "Specials"
+move_name = "Haiken"
+input_string = SubResource("Resource_hxu0d")
+priority = "Medium Priority"
+special_super_button = "Button_A"
+metadata/_custom_type_script = "uid://vdfrl263oi6s"
+
+[node name="InputTestWithBuffer" type="Control" unique_id=1126965296]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputBufferVisualizer" parent="." unique_id=1103610360 instance=ExtResource("1_o5ypv")]
+layout_mode = 1
+
+[node name="InputInterpreter" parent="." unique_id=1470210156 instance=ExtResource("2_2nqhw")]
+input_buffer_length = 200
+moves_to_check = Array[ExtResource("3_qqsy3")]([SubResource("Resource_svetx")])
+
+[connection signal="export_input_buffer" from="InputInterpreter" to="InputBufferVisualizer" method="_on_input_interpreter_export_input_buffer"]

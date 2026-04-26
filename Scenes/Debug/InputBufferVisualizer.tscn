@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://c1l5fbdo2nwj6"]
+
+[ext_resource type="Script" uid="uid://c44q7rg1ypecb" path="res://Scripts/Resources/BaseResourcesForAttacks/InputString.gd" id="1_gidun"]
+[ext_resource type="Script" uid="uid://bmuho26c6lp8a" path="res://Scripts/Resources/BaseResourcesForAttacks/SingleInput.gd" id="2_1hxi1"]
+
+[sub_resource type="GDScript" id="GDScript_443y4"]
+resource_name = "BufferVisualizer"
+script/source = "extends Control
+
+@export var input_buffer : InputString
+
+@onready var singular_input_display = preload(\"res://Scenes/Debug/SingleInputDisplay.tscn\")
+
+@export var visualizer : bool = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
+func visualize_buffer() -> void:
+	
+	for i in $VerticalSeperator.get_children():
+		i.queue_free()
+	
+	var counter = 0
+	var last_input : SingleInput = SingleInput.new(\"LEFT\")
+	for input : SingleInput in input_buffer.string:
+		if input.stored_input.recursive_equal(last_input.stored_input,1):
+			
+			continue
+		counter += 1
+		var input_to_add = singular_input_display.instantiate()
+		input_to_add.single_input = input
+		$VerticalSeperator.add_child(input_to_add)
+		last_input = input
+	
+
+
+func _on_input_interpreter_export_input_buffer(buffer: InputString) -> void:
+	if visualizer == false:
+		return
+	input_buffer = buffer
+	
+	visualize_buffer()
+"
+
+[sub_resource type="Resource" id="Resource_gidun"]
+script = ExtResource("2_1hxi1")
+stick_dir = "DOWN"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_1hxi1"]
+script = ExtResource("2_1hxi1")
+stick_dir = "UPRIGHT"
+
+[sub_resource type="Resource" id="Resource_mtt5m"]
+script = ExtResource("2_1hxi1")
+stick_dir = "DOWNLEFT"
+button_press = "A"
+
+[sub_resource type="Resource" id="Resource_0k54o"]
+script = ExtResource("1_gidun")
+string = Array[ExtResource("2_1hxi1")]([SubResource("Resource_gidun"), SubResource("Resource_1hxi1"), SubResource("Resource_mtt5m")])
+metadata/_custom_type_script = "uid://c44q7rg1ypecb"
+
+[node name="InputBufferVisualizer" type="Control" unique_id=1103610360]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_443y4")
+input_buffer = SubResource("Resource_0k54o")
+
+[node name="VerticalSeperator" type="VBoxContainer" parent="." unique_id=1502591093]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 144.0
+alignment = 2

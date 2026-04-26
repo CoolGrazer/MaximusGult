@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CommandNormal" format=3 uid="uid://crqdp4gjojoyo"]
+
+[ext_resource type="Script" uid="uid://c44q7rg1ypecb" path="res://Scripts/Resources/BaseResourcesForAttacks/InputString.gd" id="1_bxjbd"]
+[ext_resource type="Script" uid="uid://pv8v7bk2q45w" path="res://Scripts/Resources/AttackTemplates/CommandNormals.gd" id="1_ie2ir"]
+[ext_resource type="Script" uid="uid://bmuho26c6lp8a" path="res://Scripts/Resources/BaseResourcesForAttacks/SingleInput.gd" id="2_jyism"]
+
+[sub_resource type="Resource" id="Resource_xdiv0"]
+script = ExtResource("2_jyism")
+button_press = "-AB"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_xb0iw"]
+script = ExtResource("1_bxjbd")
+string = Array[ExtResource("2_jyism")]([SubResource("Resource_xdiv0")])
+metadata/_custom_type_script = "uid://c44q7rg1ypecb"
+
+[resource]
+script = ExtResource("1_ie2ir")
+priority_type = "Specials"
+move_name = "NGrab"
+input_string = SubResource("Resource_xb0iw")
+priority = "High Priority"
+metadata/_custom_type_script = "uid://pv8v7bk2q45w"

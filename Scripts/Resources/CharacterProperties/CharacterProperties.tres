@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterProperties" format=3 uid="uid://c0k166o6sqj6c"]
+
+[ext_resource type="Script" uid="uid://bhq8jsh6srvqv" path="res://Scripts/Resources/CharacterProperties/CharacterProperties.gd" id="1_pk1uj"]
+[ext_resource type="Texture2D" uid="uid://cfeymlip3bfxs" path="res://icon.svg" id="2_vuy16"]
+
+[resource]
+script = ExtResource("1_pk1uj")
+sprite_texture = ExtResource("2_vuy16")

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CommandNormal" format=3 uid="uid://b07ncvxsvl7be"]
+
+[ext_resource type="Script" uid="uid://c44q7rg1ypecb" path="res://Scripts/Resources/BaseResourcesForAttacks/InputString.gd" id="1_b1huo"]
+[ext_resource type="Script" uid="uid://bmuho26c6lp8a" path="res://Scripts/Resources/BaseResourcesForAttacks/SingleInput.gd" id="2_mp71y"]
+[ext_resource type="Script" uid="uid://pv8v7bk2q45w" path="res://Scripts/Resources/AttackTemplates/CommandNormals.gd" id="3_ceedo"]
+
+[sub_resource type="Resource" id="Resource_xdiv0"]
+script = ExtResource("2_mp71y")
+stick_dir = "LEFT"
+button_press = "-AB"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_xb0iw"]
+script = ExtResource("1_b1huo")
+string = Array[ExtResource("2_mp71y")]([SubResource("Resource_xdiv0")])
+metadata/_custom_type_script = "uid://c44q7rg1ypecb"
+
+[resource]
+script = ExtResource("3_ceedo")
+priority_type = "Specials"
+move_name = "BGrab"
+input_string = SubResource("Resource_xb0iw")
+priority = "High Priority"
+metadata/_custom_type_script = "uid://pv8v7bk2q45w"
