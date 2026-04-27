@@ -21,7 +21,7 @@ signal most_recent_input(single_input : SingleInput)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	$InputGrabber.player_name = player_name
+	$InputGrabber.player_type = player_name
 
 # Create visualizer for move buffer.
 
@@ -52,12 +52,14 @@ func _process(delta: float) -> void:
 			
 	
 	if final_move != null:
-		pass
-		
 		final_move.command_inputted()
-		
+	
+	if input_buffer.string.size() == 0:
+		return
+	
 	emit_signal("most_recent_input",input_buffer.string[-1])
-	#emit_signal("export_input_buffer",input_buffer)
+	emit_signal("export_input_buffer",input_buffer)
+
 
 
 func add_input_dict(input : SingleInput):

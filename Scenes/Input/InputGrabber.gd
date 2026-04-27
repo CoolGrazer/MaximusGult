@@ -10,7 +10,7 @@ var player_name = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	player_name = ""
+	
 	match player_type:
 		"Player1":
 			player_name = "P1"

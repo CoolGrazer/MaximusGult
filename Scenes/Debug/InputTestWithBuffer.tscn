@@ -46,9 +46,14 @@ grow_vertical = 2
 
 [node name="InputBufferVisualizer" parent="." unique_id=1103610360 instance=ExtResource("1_o5ypv")]
 layout_mode = 1
+visualizer = true
+max_size_of_list = 13
+sex = 0.44762477
 
 [node name="InputInterpreter" parent="." unique_id=1470210156 instance=ExtResource("2_2nqhw")]
 input_buffer_length = 200
+player_name = "Player1"
 moves_to_check = Array[ExtResource("3_qqsy3")]([SubResource("Resource_svetx")])
 
 [connection signal="export_input_buffer" from="InputInterpreter" to="InputBufferVisualizer" method="_on_input_interpreter_export_input_buffer"]
+[connection signal="most_recent_input" from="InputInterpreter" to="InputBufferVisualizer" method="_on_input_interpreter_most_recent_input"]

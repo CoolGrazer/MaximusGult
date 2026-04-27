@@ -13,6 +13,12 @@ script/source = "extends Control
 
 @export var visualizer : bool = false
 
+@export var max_size_of_list : int = 0
+
+var last_single_input : SingleInput = SingleInput.new()
+
+@export_exp_easing(\"attenuation\") var sex
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -29,7 +35,6 @@ func visualize_buffer() -> void:
 	var last_input : SingleInput = SingleInput.new(\"LEFT\")
 	for input : SingleInput in input_buffer.string:
 		if input.stored_input.recursive_equal(last_input.stored_input,1):
-			
 			continue
 		counter += 1
 		var input_to_add = singular_input_display.instantiate()
@@ -45,6 +50,21 @@ func _on_input_interpreter_export_input_buffer(buffer: InputString) -> void:
 	input_buffer = buffer
 	
 	visualize_buffer()
+
+
+func _on_input_interpreter_most_recent_input(single_input: SingleInput) -> void:
+	
+	if single_input.stored_input == last_single_input.stored_input:
+		return
+	
+	var input_to_add = singular_input_display.instantiate()
+	input_to_add.single_input = single_input
+	$VerticalSeperator.add_child(input_to_add)
+	
+	if $VerticalSeperator.get_child_count() >= max_size_of_list:
+		$VerticalSeperator.get_children()[0].queue_free()
+	
+	last_single_input = single_input
 "
 
 [sub_resource type="Resource" id="Resource_gidun"]
@@ -79,5 +99,5 @@ input_buffer = SubResource("Resource_0k54o")
 [node name="VerticalSeperator" type="VBoxContainer" parent="." unique_id=1502591093]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 144.0
+offset_bottom = 142.0
 alignment = 2
