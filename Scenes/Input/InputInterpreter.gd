@@ -12,9 +12,10 @@ var input_buffer : InputString = InputString.new()
 @export var moves_to_check : Array[GenericInputCommand]
 
 
+
 var moves_avalible_to_input : Array[GenericInputCommand]
 
-signal move_inputed(move : String)
+signal move_inputed(move : GenericInputCommand)
 signal export_input_buffer(buffer : InputString)
 signal most_recent_input(single_input : SingleInput)
 
@@ -35,24 +36,34 @@ func _process(delta: float) -> void:
 			moves_avalible_to_input.append(i)
 	
 	var final_move : GenericInputCommand
-	var current_priority_type = "Command_Normal"
-	var current_priority_granular = ""
+	var current_priority_type = Attack_Priorities.Priorities.BASIC
+	var priority_beater = Attack_Priorities.Priority_Beater.THROW_OUT
 	for move : GenericInputCommand in moves_avalible_to_input:
+		
+		
 		
 		if move.priority_type == "Command_Normal" and current_priority_type == "Command_Normal":
 			final_move = move
-		if move.priority_type == "Specials":
+		if move.priority_type == "Specials" and current_priority_type == "Command_Normal":
 			current_priority_type = "Specials"
-			
-			var button_to_press = move.special_super_button
-			var stored_value = input_buffer.string[-1].stored_input[button_to_press]
-			
-			if abs(stored_value) > 0:
-				final_move = move
-			
+		
+		
+		
+		#if move.priority_type >= Attack_Priorities.Priorities.SPECIALS:
+			#
+			#
+			#var button_to_press = move.special_super_button
+			#var stored_value = input_buffer.string[-1].stored_input[button_to_press]
+			#
+			#if abs(stored_value) > 0:
+				#final_move = move
+		
+		
+		
 	
 	if final_move != null:
 		final_move.command_inputted()
+		emit_signal("move_inputed",final_move)
 	
 	if input_buffer.string.size() == 0:
 		return

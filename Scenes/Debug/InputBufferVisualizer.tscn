@@ -17,7 +17,8 @@ script/source = "extends Control
 
 var last_single_input : SingleInput = SingleInput.new()
 
-@export_exp_easing(\"attenuation\") var sex
+@export_enum(\"Raw_Buffer\",\"Simplified_Buffer\") var type_of_buffer : String = \"\"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,6 +46,10 @@ func visualize_buffer() -> void:
 
 
 func _on_input_interpreter_export_input_buffer(buffer: InputString) -> void:
+	if type_of_buffer == \"Raw_Buffer\":
+		pass
+	else:
+		return
 	if visualizer == false:
 		return
 	input_buffer = buffer
@@ -53,8 +58,13 @@ func _on_input_interpreter_export_input_buffer(buffer: InputString) -> void:
 
 
 func _on_input_interpreter_most_recent_input(single_input: SingleInput) -> void:
+	if type_of_buffer == \"Simplified_Input\":
+		pass
+	else:
+		return
 	
-	if single_input.stored_input == last_single_input.stored_input:
+	
+	if single_input.check_stored_equality(last_single_input):
 		return
 	
 	var input_to_add = singular_input_display.instantiate()

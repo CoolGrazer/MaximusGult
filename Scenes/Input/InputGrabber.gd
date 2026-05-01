@@ -53,11 +53,17 @@ func button_interpreter(button_type) -> int:
 		"Button_A":
 			if Input.is_action_just_pressed(player_name + "A"):
 				button_state = 1
+			elif Input.is_action_pressed(player_name + "A"):
+				button_state = 2
+			
 			if Input.is_action_just_released(player_name + "A"):
 				button_state = -1
 		"Button_B":
 			if Input.is_action_just_pressed(player_name + "B"):
 				button_state = 1
+			elif Input.is_action_pressed(player_name + "B"):
+				button_state = 2
+			
 			if Input.is_action_just_released(player_name + "B"):
 				button_state = -1
 	

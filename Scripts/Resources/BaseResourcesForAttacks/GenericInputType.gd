@@ -1,12 +1,13 @@
 extends Resource
 class_name GenericInputCommand
-@export_enum("Command_Normal","Specials","Supers") var priority_type = ""
+
+@export var priority_type = Attack_Priorities.Priorities.BASIC
 
 @export var move_name = ""
 
 @export var input_string : InputString
 
-@export_enum("Low Priority","Medium Priority","High Priority") var priority = ""
+@export var priority_beater = Attack_Priorities.Priority_Beater.THROW_OUT
 
 @export_enum("Button_A","Button_B") var special_super_button : String = ""
 
@@ -76,6 +77,7 @@ func get_progress_from_input_buffer(input_buffer : InputString):
 			add_progress()
 			
 			if progress == max_needed:
+				
 				return move_name
 			continue
 		else:

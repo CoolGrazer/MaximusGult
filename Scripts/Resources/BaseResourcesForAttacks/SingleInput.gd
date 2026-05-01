@@ -14,6 +14,61 @@ var used_for = ""
 
 @export_enum("A","B","AB","NEU","-A","-B","-AB","+A","+B","+AB") var button_press = "NEU"
 
+
+func check_stored_equality(alternate_single : SingleInput):
+	
+	var alternate_input = alternate_single.stored_input
+	
+	if not (stored_input["Stick_Horizontal"] == alternate_input["Stick_Horizontal"]):
+		return false
+	
+	if not (stored_input["Stick_Vertical"] == alternate_input["Stick_Vertical"]):
+		return false
+	
+	var button_a_original = stored_input["Button_A"]
+	var button_b_original = stored_input["Button_B"]
+	var button_a_alt = alternate_input["Button_A"]
+	var button_b_alt = alternate_input["Button_B"]
+	
+	
+	if button_a_original == 1 or button_a_original == 2:
+		button_a_original = 1
+	
+	if button_b_original == 1 or button_b_original == 2:
+		button_b_original = 1
+	
+	if button_a_alt == 1 or button_a_alt == 2:
+		button_a_alt = 1
+	
+	if button_b_alt == 1 or button_b_alt == 2:
+		button_b_alt = 1
+	
+	if button_a_original == 0 or button_a_original == -1:
+		button_a_original = 0
+	
+	if button_b_original == 0 or button_b_original == -1:
+		button_b_original = 0
+	
+	if button_a_alt == 0 or button_a_alt == -1:
+		button_a_alt = 0
+	
+	if button_b_alt == 0 or button_b_alt == -1:
+		button_b_alt = 0
+	
+	
+	
+	
+	
+	if not (button_a_original == button_a_alt):
+		return false
+	
+	if not (button_b_original == button_b_alt):
+		return false
+	
+	
+	
+	return true
+
 func _init(input = "MANUAL") -> void:
 	
 	

@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="InputString" format=3 uid="uid://d3cxs5q635n11"]
+
+[ext_resource type="Script" uid="uid://c44q7rg1ypecb" path="res://Scripts/Resources/BaseResourcesForAttacks/InputString.gd" id="1_t8gc2"]
+[ext_resource type="Script" uid="uid://bmuho26c6lp8a" path="res://Scripts/Resources/BaseResourcesForAttacks/SingleInput.gd" id="2_ainqr"]
+
+[sub_resource type="Resource" id="Resource_t8gc2"]
+script = ExtResource("2_ainqr")
+stick_dir = "DOWN"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_ainqr"]
+script = ExtResource("2_ainqr")
+stick_dir = "DOWNRIGHT"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_2yk3h"]
+script = ExtResource("2_ainqr")
+stick_dir = "RIGHT"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_xju00"]
+script = ExtResource("2_ainqr")
+stick_dir = "DOWN"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_vhy51"]
+script = ExtResource("2_ainqr")
+stick_dir = "DOWNRIGHT"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[sub_resource type="Resource" id="Resource_pmvxb"]
+script = ExtResource("2_ainqr")
+stick_dir = "RIGHT"
+metadata/_custom_type_script = "uid://bmuho26c6lp8a"
+
+[resource]
+script = ExtResource("1_t8gc2")
+string = Array[ExtResource("2_ainqr")]([SubResource("Resource_t8gc2"), SubResource("Resource_ainqr"), SubResource("Resource_2yk3h"), SubResource("Resource_xju00"), SubResource("Resource_vhy51"), SubResource("Resource_pmvxb")])
+metadata/_custom_type_script = "uid://c44q7rg1ypecb"
