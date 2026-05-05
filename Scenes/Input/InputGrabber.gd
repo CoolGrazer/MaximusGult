@@ -6,7 +6,7 @@ var player_type : String = ""
 
 var player_name = ""
 
-
+var last_input_dict = SingleInput.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,8 +23,14 @@ func _process(delta: float) -> void:
 	
 	if get_parent() != null:
 		
+		#if get_input_dict().stored_input.recursive_equal(last_input_dict.stored_input,1):
+		#	
+	#		return
+		
 		get_parent().add_input_dict(get_input_dict())
 	
+	
+	last_input_dict = get_input_dict()
 
 func get_input_dict() -> SingleInput:
 	

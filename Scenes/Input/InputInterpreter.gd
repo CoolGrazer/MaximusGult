@@ -31,39 +31,26 @@ func _process(delta: float) -> void:
 	
 	moves_avalible_to_input = []
 	
-	for i : GenericInputCommand in moves_to_check:
-		if i.get_progress_from_input_buffer(input_buffer) != null:
-			moves_avalible_to_input.append(i)
+	for move : GenericInputCommand in moves_to_check:
+		if move.get_progress_from_input_buffer(input_buffer) != null:
+			
+			if move.priority_type >= Attack_Priorities.Priorities.SPECIALS:
+				var button_to_press = move.special_super_button
+				var stored_value = input_buffer.string[-1].stored_input[button_to_press]
+				print(stored_value)
+				if abs(stored_value) == 1:
+					move.inputs_used.append(input_buffer.string[-1])
+					moves_avalible_to_input.append(move)
+			else:
+				moves_avalible_to_input.append(move)
+			
+			
 	
-	var final_move : GenericInputCommand
-	var current_priority_type = Attack_Priorities.Priorities.BASIC
-	var priority_beater = Attack_Priorities.Priority_Beater.THROW_OUT
-	for move : GenericInputCommand in moves_avalible_to_input:
-		
-		
-		
-		if move.priority_type == "Command_Normal" and current_priority_type == "Command_Normal":
-			final_move = move
-		if move.priority_type == "Specials" and current_priority_type == "Command_Normal":
-			current_priority_type = "Specials"
-		
-		
-		
-		#if move.priority_type >= Attack_Priorities.Priorities.SPECIALS:
-			#
-			#
-			#var button_to_press = move.special_super_button
-			#var stored_value = input_buffer.string[-1].stored_input[button_to_press]
-			#
-			#if abs(stored_value) > 0:
-				#final_move = move
-		
-		
-		
 	
-	if final_move != null:
-		final_move.command_inputted()
-		emit_signal("move_inputed",final_move)
+	if moves_avalible_to_input.size() > 0:
+		check_for_final_move()
+	
+	
 	
 	if input_buffer.string.size() == 0:
 		return
@@ -72,6 +59,28 @@ func _process(delta: float) -> void:
 	emit_signal("export_input_buffer",input_buffer)
 
 
+
+func check_for_final_move():
+	var final_move : GenericInputCommand = moves_avalible_to_input[0]
+	for move : GenericInputCommand in moves_avalible_to_input:
+		
+		if final_move.priority_type > move.priority_type:
+			continue
+		
+		if final_move.priority_type < move.priority_type:
+			final_move = move
+		
+		if final_move.priority_type == move.priority_type:
+			if final_move.priority_beater > move.priority_beater:
+				continue
+			else:
+				final_move = move
+		
+	
+	if final_move != null:
+		final_move.command_inputted()
+		emit_signal("move_inputed",final_move)
+		print("Inpouted.")
 
 func add_input_dict(input : SingleInput):
 	input_buffer.string.append(input)

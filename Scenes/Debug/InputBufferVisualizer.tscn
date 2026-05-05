@@ -52,15 +52,19 @@ func _on_input_interpreter_export_input_buffer(buffer: InputString) -> void:
 		return
 	if visualizer == false:
 		return
+	
 	input_buffer = buffer
 	
 	visualize_buffer()
 
 
 func _on_input_interpreter_most_recent_input(single_input: SingleInput) -> void:
-	if type_of_buffer == \"Simplified_Input\":
+	if type_of_buffer == \"Simplified_Buffer\":
 		pass
 	else:
+		return
+	
+	if visualizer == false:
 		return
 	
 	

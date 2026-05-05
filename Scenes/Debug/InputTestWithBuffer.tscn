@@ -62,7 +62,7 @@ priority_type = 2
 move_name = "Shoryucanna"
 input_string = SubResource("Resource_swsd5")
 priority_beater = 1
-special_super_button = "Button_A"
+special_super_button = "Button_B"
 metadata/_custom_type_script = "uid://vdfrl263oi6s"
 
 [sub_resource type="Resource" id="Resource_3lqrm"]
@@ -70,6 +70,7 @@ script = ExtResource("3_qqsy3")
 priority_type = 3
 move_name = "SuperDuper"
 input_string = ExtResource("8_antcy")
+priority_beater = 2
 special_super_button = "Button_B"
 metadata/_custom_type_script = "uid://hki0ag63m2yk"
 
@@ -103,10 +104,10 @@ grow_vertical = 2
 layout_mode = 1
 visualizer = true
 max_size_of_list = 13
-type_of_buffer = "Simplified_Buffer"
+type_of_buffer = "Raw_Buffer"
 
 [node name="InputInterpreter" parent="." unique_id=1470210156 instance=ExtResource("2_2nqhw")]
-input_buffer_length = 45
+input_buffer_length = 10
 player_name = "Player1"
 moves_to_check = Array[ExtResource("3_qqsy3")]([SubResource("Resource_svetx"), SubResource("Resource_dksgb"), SubResource("Resource_3lqrm")])
 
