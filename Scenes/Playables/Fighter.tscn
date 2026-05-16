@@ -2,24 +2,43 @@
 
 [ext_resource type="Script" uid="uid://cg5kryeillw3u" path="res://Scripts/Playable/Fighter.gd" id="1_8eani"]
 [ext_resource type="Texture2D" uid="uid://cfeymlip3bfxs" path="res://icon.svg" id="2_47q2y"]
+[ext_resource type="Script" uid="uid://bhq8jsh6srvqv" path="res://Scripts/Resources/CharacterProperties/CharacterProperties.gd" id="2_qhpg3"]
 [ext_resource type="PackedScene" uid="uid://ovmcdif8br1l" path="res://Scenes/Input/InputInterpreter.tscn" id="3_gl5tk"]
 [ext_resource type="Script" uid="uid://d1ww5cyjsoike" path="res://Scripts/StateMachine/PlayableStateMachine.gd" id="4_47q2y"]
 [ext_resource type="Script" uid="uid://cl2fkxjhmgix4" path="res://Scripts/StateMachine/States/Generic/Idle.gd" id="5_gl5tk"]
+[ext_resource type="Script" uid="uid://yb5o3qoioina" path="res://Scripts/StateMachine/States/Generic/Walking.gd" id="6_2j51l"]
+[ext_resource type="Script" uid="uid://bnh2ojocsv0sv" path="res://Scripts/AnimationDatas/FightingAnimationPlayer.gd" id="6_v1sgt"]
+
+[sub_resource type="Resource" id="Resource_8y1bs"]
+script = ExtResource("2_qhpg3")
+character_name = "Chris"
+forward_walk_speed_subpixels = 10
+backward_walk_speed_subpixels = 8
+metadata/_custom_type_script = "uid://bhq8jsh6srvqv"
 
 [node name="Fighter" type="Node2D" unique_id=21342918]
 script = ExtResource("1_8eani")
+character_properties = SubResource("Resource_8y1bs")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=956226069]
+position = Vector2(0, -17)
 scale = Vector2(0.10937501, 0.265625)
 texture = ExtResource("2_47q2y")
 
 [node name="InputInterpreter" parent="." unique_id=1470210156 instance=ExtResource("3_gl5tk")]
 player_name = "Player1"
 
-[node name="PlayableStateMachine" type="Node" parent="." unique_id=208159015]
+[node name="PlayableStateMachine" type="Node" parent="." unique_id=208159015 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_47q2y")
+initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="PlayableStateMachine" unique_id=696231302]
 script = ExtResource("5_gl5tk")
+
+[node name="Walking" type="Node" parent="PlayableStateMachine" unique_id=630270227]
+script = ExtResource("6_2j51l")
+
+[node name="AnimationPlayer" type="Node" parent="." unique_id=881230695]
+script = ExtResource("6_v1sgt")
 
 [connection signal="most_recent_input" from="InputInterpreter" to="." method="_on_input_interpreter_most_recent_input"]

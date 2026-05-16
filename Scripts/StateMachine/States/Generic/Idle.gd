@@ -6,8 +6,11 @@ func  _enter():
 	pass
 
 func _update():
-	if playable_fighter.current_input["Horizontal"] != 0:
-		state_machine.current_state
+	if playable_fighter.current_input.stored_input["Stick_Horizontal"] != 0:
+		pass
+	else:
+		state_machine.change_state_name("Walking")
+	
 
 func _exit():
 	pass

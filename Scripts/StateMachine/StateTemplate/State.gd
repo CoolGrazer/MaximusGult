@@ -1,7 +1,6 @@
 extends Node
 class_name State
 
-@export var state_name : String = ""
 
 var state_machine : StateMachine
 var playable_fighter : Fighter
