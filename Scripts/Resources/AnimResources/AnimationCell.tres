@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AnimationFrame" format=3 uid="uid://c28circ1j5777"]
+
+[ext_resource type="Script" uid="uid://li58xm05yh0k" path="res://Scripts/AnimationDatas/AnimationCell.gd" id="1_4h36s"]
+
+[resource]
+script = ExtResource("1_4h36s")
+metadata/_custom_type_script = "uid://li58xm05yh0k"

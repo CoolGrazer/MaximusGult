@@ -1,12 +1,8 @@
 extends Resource
-class_name FullAnimation
-@export var animation_frames : Array[AnimationFrame]
+class_name FullAnimationData
+@export var animation_cells : Array[AnimationCell]
 
-var progress_through_animation_frames : int = 0
-
-func run_animation():
-	pass
-
+var started : bool = false
 
 #@export var hurtboxes_present : Array[Hurtboxes]
 #@export var hitboxes_present : Array[Hitboxes]

@@ -3,12 +3,15 @@ class_name FightPos
 
 
 var sub_pixel_position : Vector2i
-var pixel_position : Vector2i
+var pixel_position : Vector2
 
 
 
 const sub_pixel_resolution : int = 16
 
+func set_pixel_values(vector : Vector2):
+	pixel_position = vector
+	sub_pixel_position = pixel_position * sub_pixel_resolution
 
 func move_whole_pixels(vector : Vector2i):
 	sub_pixel_position += vector * sub_pixel_resolution

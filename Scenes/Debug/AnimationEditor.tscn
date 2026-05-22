@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dtt5avhcnbc1e"]
+
+[ext_resource type="PackedScene" uid="uid://dc2iwmuotisad" path="res://Scenes/Playables/Fighter.tscn" id="1_co43r"]
+[ext_resource type="Resource" uid="uid://dtl2awafhg4yn" path="res://Characters/TestDash.tres" id="2_slnwr"]
+
+[node name="AnimationTester" type="Node" unique_id=1002879568]
+
+[node name="Fighter" parent="." unique_id=21342918 instance=ExtResource("1_co43r")]
+position = Vector2(72, 88)
+character_properties = ExtResource("2_slnwr")
+animation_testing = true
+
+[node name="UIForAnimations" type="Control" parent="." unique_id=1352403600]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationDataControls" type="HBoxContainer" parent="UIForAnimations" unique_id=1800273371]
+custom_minimum_size = Vector2(32, 20)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+offset_right = 52.0
+grow_vertical = 0
+
+[node name="Left" type="Button" parent="UIForAnimations/AnimationDataControls" unique_id=1135507290]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "<"
+
+[node name="Player" type="Button" parent="UIForAnimations/AnimationDataControls" unique_id=138447627]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "(0)"
+
+[node name="Right" type="Button" parent="UIForAnimations/AnimationDataControls" unique_id=1643973572]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = ">"
+
+[node name="Button" type="Button" parent="UIForAnimations" unique_id=1613447467]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -61.0
+offset_top = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "Hitbox Toggle"
+
+[editable path="Fighter"]
