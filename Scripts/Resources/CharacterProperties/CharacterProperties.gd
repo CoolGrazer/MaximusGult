@@ -31,3 +31,7 @@ class_name CharacterProperties
 @export_subgroup("Grab Boxes")
 @export var grab_box_width : int = 0
 @export var grab_box_height : int = 0
+
+@export_category("Animation Data")
+@export_group("Movement Animations")
+@export var animation_data : Dictionary[String,FullAnimationData]

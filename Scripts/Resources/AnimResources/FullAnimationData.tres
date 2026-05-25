@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FullAnimationData" format=3 uid="uid://bvvsq2c71s1us"]
+
+[ext_resource type="Script" uid="uid://li58xm05yh0k" path="res://Scripts/AnimationDatas/AnimationCell.gd" id="1_nsfet"]
+[ext_resource type="Script" uid="uid://dbawdu27qtmly" path="res://Scripts/AnimationDatas/FullAnimationData.gd" id="2_nminq"]
+
+[resource]
+script = ExtResource("2_nminq")
+metadata/_custom_type_script = "uid://dbawdu27qtmly"
