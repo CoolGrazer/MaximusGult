@@ -6,7 +6,7 @@ class_name AnimationCell
 
 @export var inital_frame_displacement : Vector2 = Vector2.ZERO
 @export var constant_frame_displacement : Vector2 = Vector2.ZERO
-
+@export var constant_frame_displacement_curve : Curve = Curve.new()
 
 #@export var force_activation : Vector2 = Vector2.ZERO
 

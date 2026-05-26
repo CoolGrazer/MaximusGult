@@ -32,6 +32,18 @@ func start_animation(animation_name :String) -> String:
 	set_to_initial_animation_state()
 	while animation_cells_left > 0:
 		
+		
+		if current_animation_cell.constant_frame_displacement.length() > 0.:
+			var current_duration_left : float = duration_of_cell
+			var current_distance = (current_animation_cell.duration_of_cell - current_duration_left) / current_animation_cell.duration_of_cell
+			var last_distancce = (current_animation_cell.duration_of_cell - current_duration_left) / current_animation_cell.duration_of_cell
+			var sampled_value = current_animation_cell.constant_frame_displacement_curve.sample(current_distance)
+			var last_sample = current_animation_cell.constant_frame_displacement_curve.sample(last_distancce)
+			print(sampled_value)
+			var constant_displacement = current_animation_cell.constant_frame_displacement * (sampled_value)
+			affected_fighter.current_position.move_whole_pixels(constant_displacement)
+		
+		
 		if duration_of_cell == 0:
 			animation_cells_left -= 1
 			if animation_cells_left == 0:
@@ -40,11 +52,12 @@ func start_animation(animation_name :String) -> String:
 			
 			var current_animation_cell_index = current_animation.animation_cells.size() - animation_cells_left
 			current_animation_cell = current_animation.animation_cells[current_animation_cell_index]
-			duration_of_cell = current_animation_cell.duration_of_cell
-			affected_fighter.sprite_node.frame = current_animation_cell.character_frame
-			affected_fighter.current_position.move_whole_pixels(current_animation_cell.inital_frame_displacement)
+			animation_cell_update()
 			
-		affected_fighter.current_position.move_whole_pixels(current_animation_cell.constant_frame_displacement)
+		
+		
+		
+		
 		duration_of_cell -= 1
 		
 		await get_tree().process_frame
@@ -59,12 +72,13 @@ func start_animation(animation_name :String) -> String:
 func set_to_initial_animation_state():
 	animation_cells_left = current_animation.animation_cells.size()
 	current_animation_cell = current_animation.animation_cells[0]
+	animation_cell_update()
+	
+
+func animation_cell_update():
 	duration_of_cell = current_animation_cell.duration_of_cell
 	affected_fighter.sprite_node.frame = current_animation_cell.character_frame
 	affected_fighter.current_position.move_whole_pixels(current_animation_cell.inital_frame_displacement)
-
-func animation_cell_to_applied():
-	pass
 
 func cancel_animation_into():
 	pass

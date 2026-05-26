@@ -12,11 +12,17 @@ character_frame = 1
 inital_frame_displacement = Vector2(5, 0)
 metadata/_custom_type_script = "uid://li58xm05yh0k"
 
+[sub_resource type="Curve" id="Curve_0i1gd"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
 [sub_resource type="Resource" id="Resource_4df2t"]
 script = ExtResource("2_0i1gd")
 duration_of_cell = 15
 character_frame = 2
-constant_frame_displacement = Vector2(4, 1)
+inital_frame_displacement = Vector2(8, 0)
+constant_frame_displacement = Vector2(50, 0)
+constant_frame_displacement_curve = SubResource("Curve_0i1gd")
 metadata/_custom_type_script = "uid://li58xm05yh0k"
 
 [sub_resource type="Resource" id="Resource_0i1gd"]
