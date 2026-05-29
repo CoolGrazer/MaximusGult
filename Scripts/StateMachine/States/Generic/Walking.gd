@@ -19,4 +19,5 @@ func walk(walk_direction):
 	else:
 		state_machine.change_state_name("Idle")
 	
-	playable_fighter.current_position.move_stepped_sub_pixels(Vector2i(movement_distance * walk_direction,0))
+	playable_fighter.current_position.move_stepped_sub_pixels(Vector2(movement_distance * walk_direction,0))
+	

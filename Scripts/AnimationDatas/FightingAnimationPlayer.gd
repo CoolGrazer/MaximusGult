@@ -13,18 +13,27 @@ var duration_of_cell : int = 0
 
 @onready var affected_fighter : Fighter = get_parent()
 
+@onready var playable_state_machine : StateMachine = get_parent().get_node("PlayableStateMachine")
+
+var held_constant_pos : Vector2
+
+signal animation_started
+signal animation_ended
+
+
 func _ready() -> void:
 	await get_tree().process_frame
-	start_animation("Idle")
+	
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("P1A"):
-		start_animation("Idle")
+		start_animation("Walk")
 	if Input.is_action_just_pressed("P1B"):
 		affected_fighter.current_position.set_pixel_values(Vector2(72,88))
 
 
 func start_animation(animation_name :String) -> String:
+	playable_state_machine.change_state_name("BasicAnimation")
 	var found_animation = animation_data[animation_name]
 	if found_animation == null:
 		return "Error does not exist."
@@ -34,14 +43,16 @@ func start_animation(animation_name :String) -> String:
 		
 		
 		if current_animation_cell.constant_frame_displacement.length() > 0.:
+			#held_constant_pos.y += affected_fighter.vertical_force / FightPos.sub_pixel_resolution
+			
 			var current_duration_left : float = duration_of_cell
 			var current_distance = (current_animation_cell.duration_of_cell - current_duration_left) / current_animation_cell.duration_of_cell
-			var last_distancce = (current_animation_cell.duration_of_cell - current_duration_left) / current_animation_cell.duration_of_cell
+			
 			var sampled_value = current_animation_cell.constant_frame_displacement_curve.sample(current_distance)
-			var last_sample = current_animation_cell.constant_frame_displacement_curve.sample(last_distancce)
-			print(sampled_value)
-			var constant_displacement = current_animation_cell.constant_frame_displacement * (sampled_value)
-			affected_fighter.current_position.move_whole_pixels(constant_displacement)
+			
+			var constant_displacement = current_animation_cell.constant_frame_displacement * sampled_value
+			
+			affected_fighter.current_position.set_pixel_values(held_constant_pos + constant_displacement)
 		
 		
 		if duration_of_cell == 0:
@@ -62,7 +73,10 @@ func start_animation(animation_name :String) -> String:
 		
 		await get_tree().process_frame
 	
+	if current_animation.looping == true:
+		start_animation(animation_name)
 	
+	playable_state_machine.change_state_name(current_animation.ending_state_name)
 	return "Animation Completed!"
 
 
@@ -79,6 +93,8 @@ func animation_cell_update():
 	duration_of_cell = current_animation_cell.duration_of_cell
 	affected_fighter.sprite_node.frame = current_animation_cell.character_frame
 	affected_fighter.current_position.move_whole_pixels(current_animation_cell.inital_frame_displacement)
+	held_constant_pos = affected_fighter.current_position.pixel_position
+	affected_fighter.vertical_force = current_animation_cell.vertical_force_subpixels
 
 func cancel_animation_into():
 	pass

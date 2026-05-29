@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://j3cf142mcu80" path="res://Scripts/Stage/FightingStage.gd" id="1_mxnbi"]
 [ext_resource type="PackedScene" uid="uid://dc2iwmuotisad" path="res://Scenes/Playables/Fighter.tscn" id="2_b5ttg"]
+[ext_resource type="Resource" uid="uid://dtl2awafhg4yn" path="res://Characters/TestDash.tres" id="3_gntp8"]
 
 [node name="FightingStage" type="Node2D" unique_id=2009936081]
 script = ExtResource("1_mxnbi")
@@ -12,4 +13,5 @@ horizontal_spawn_distance = 0.31
 [node name="BackgroundSprites" type="Node" parent="." unique_id=1828974317]
 
 [node name="Fighter" parent="." unique_id=21342918 instance=ExtResource("2_b5ttg")]
-position = Vector2(249.3125, 112)
+position = Vector2(1.3125, 112)
+character_properties = ExtResource("3_gntp8")

@@ -2,7 +2,8 @@ extends Resource
 class_name FullAnimationData
 @export var animation_cells : Array[AnimationCell]
 
-var started : bool = false
+@export var ending_state_name : String
+@export var looping : bool = false
 
 #@export var hurtboxes_present : Array[Hurtboxes]
 #@export var hitboxes_present : Array[Hitboxes]

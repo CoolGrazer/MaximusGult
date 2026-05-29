@@ -17,6 +17,7 @@ class_name CharacterProperties
 @export var backward_walk_speed_subpixels : int = 0
 @export_subgroup("Jumping Movement")
 @export var jump_height : int = 0
+@export var jump_distance : int = 0
 @export var time_to_jump : int = 0
 @export var time_to_land : int = 0
 @export_subgroup("Lag Time Movement")

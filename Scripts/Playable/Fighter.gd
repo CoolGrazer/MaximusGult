@@ -3,6 +3,7 @@ extends Node2D
 class_name Fighter
 
 @export var character_properties : CharacterProperties
+@export var universal_properties : UniversalProperties
 
 @export var animation_testing : bool = false
 
@@ -14,6 +15,8 @@ var enemy_facing_direction : int = 1
 @onready var fighting_stage : FightingStage
 
 @onready var sprite_node : Sprite2D = get_node("FighterSprite")
+
+var vertical_force : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,11 +43,13 @@ func spawn_in():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	position = current_position.pixel_position
+	if vertical_force != 0:
+		vertical_force += 10
 	
 	
 	
 	position = current_position.pixel_position
+
 
 
 func _on_input_interpreter_most_recent_input(single_input: SingleInput) -> void:

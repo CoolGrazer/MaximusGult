@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="UniversalProperties" format=3 uid="uid://dwq613lj4f7la"]
+
+[ext_resource type="Script" uid="uid://k7rwd3er86dy" path="res://Scripts/Resources/UniversalResources/UniversalProperties.gd" id="1_lamgt"]
+
+[resource]
+script = ExtResource("1_lamgt")
+max_dash_cooldown = 50
